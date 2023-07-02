@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
 
     # Installed packages
-    "phonenumber_field",
 
 ]
 
