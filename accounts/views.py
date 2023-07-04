@@ -8,6 +8,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import SignUpSerializer, LoginSerializer, CustomUserDetailSerializer
+from .permissions import IsUser
 
 
 class SignUpView(APIView):
@@ -61,7 +62,7 @@ class LoginView(APIView):
 
 
 class CustomUserDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsUser]
     serializer_class = CustomUserDetailSerializer
 
     # GET method to get user details
