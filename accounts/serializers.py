@@ -35,3 +35,10 @@ class SignUpSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Password must contain at least one digit.")
 
         return value
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = ('email', 'password')
