@@ -5,8 +5,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.permissions import IsAuthenticated
 
-from .serializers import SignUpSerializer, LoginSerializer
+from .serializers import SignUpSerializer, LoginSerializer, CustomUserDetailSerializer
 
 
 class SignUpView(APIView):
@@ -57,3 +58,21 @@ class LoginView(APIView):
                 raise AuthenticationFailed('Invalid credentials')
         except AuthenticationFailed as e:
             return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CustomUserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CustomUserDetailSerializer
+
+    # GET method to get user details
+    def get(self, request):
+        try:
+            user = request.user
+            if user:
+                serializer = CustomUserDetailSerializer(user)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                raise AuthenticationFailed('Authentication error')
+
+        except AuthenticationFailed as e:
+            return Response({'detail': str(e)}, status=status.HTTP_401_UNAUTHORIZED)
