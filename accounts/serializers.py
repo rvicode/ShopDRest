@@ -42,3 +42,11 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ('email', 'password')
+
+
+# Serializer class for user details
+class CustomUserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'email')
+        read_only = True
