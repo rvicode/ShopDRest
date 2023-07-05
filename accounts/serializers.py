@@ -50,3 +50,17 @@ class CustomUserDetailSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ('id', 'username', 'email')
         read_only = True
+
+
+class EditCustomUserSerializer(serializers.ModelSerializer):
+    email = serializers.CharField(read_only=True)
+    
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email')
+
+    
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username')
+        instance.save()
+        return instance
