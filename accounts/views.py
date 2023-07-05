@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import SignUpSerializer, LoginSerializer, CustomUserDetailSerializer
+from .serializers import SignUpSerializer, LoginSerializer, CustomUserDetailSerializer, EditCustomUserSerializer
 from .permissions import IsUser
 
 
@@ -63,9 +63,9 @@ class LoginView(APIView):
 
 class CustomUserDetailView(APIView):
     permission_classes = [IsAuthenticated, IsUser]
-    serializer_class = CustomUserDetailSerializer
+    serializer_class = CustomUserDetailSerializer, EditCustomUserSerializer
 
-    # GET method to get user details
+    # GET method to get user detaila
     def get(self, request):
         try:
             user = request.user
@@ -77,3 +77,19 @@ class CustomUserDetailView(APIView):
 
         except AuthenticationFailed as e:
             return Response({'detail': str(e)}, status=status.HTTP_401_UNAUTHORIZED)
+        
+
+    def put(self, request):
+        try:
+            user = request.user
+            if user:
+                serializer = EditCustomUserSerializer(user, data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    return Response({'detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                raise AuthenticationFailed('Authentication error')
+        except AuthenticationFailed as e:
+                    return Response({'detail': str(e)}, status=status.HTTP_401_UNAUTHORIZED)
