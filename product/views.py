@@ -2,7 +2,6 @@ from rest_framework.views import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from django.db.models import Q
 
 from .models import Product
 from .serializers import ProductListSerializer, ProductDetailSerializer
