@@ -15,6 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    category = models.ManyToManyField(Category, related_name='category', verbose_name='Category', null=True, blank=True)
     title = models.CharField(max_length=30, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
     active = models.BooleanField(verbose_name="I's Active")
