@@ -3,8 +3,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 
-from .models import Product
-from .serializers import ProductListSerializer, ProductDetailSerializer
+from .models import Product, Category
+from .serializers import ProductListSerializer, ProductDetailSerializer, CategoryListSerializer
 
 
 @api_view(['GET'])
@@ -26,5 +26,15 @@ def product_detail_view(request, pk):
             return Response(data=ser.data, status=status.HTTP_200_OK)
         else:
             return Response({'detail': 'That is not active product'})
+    else:
+        return Response({'detail': 'Please create the GET method'})
+
+
+@api_view(['GET'])
+def category_list_view(request):
+    if request.method == 'GET':
+        category = Category.objects.filter(active=True)
+        ser = CategoryListSerializer(category, many=True)
+        return Response(ser.data, status=status.HTTP_200_OK)
     else:
         return Response({'detail': 'Please create the GET method'})
