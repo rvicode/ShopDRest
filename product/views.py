@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 
 
 from .models import Product, Category
-from .serializers import ProductListSerializer, ProductDetailSerializer, CategoryListSerializer
+from .serializers import ProductListSerializer, ProductDetailSerializer, CategoryListSerializer, CategoryDetailSerializer
 
 
 @api_view(['GET'])
@@ -38,3 +38,10 @@ def category_list_view(request):
         return Response(ser.data, status=status.HTTP_200_OK)
     else:
         return Response({'detail': 'Please create the GET method'})
+
+
+@api_view(['GET'])
+def category_detail_view(request, pk):
+    category = Category.objects.get(id=pk)
+    ser = CategoryDetailSerializer(category)
+    return Response(ser.data, status=status.HTTP_200_OK)
