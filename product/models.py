@@ -37,3 +37,6 @@ class Comment(models.Model):
     active = models.BooleanField(default=True, verbose_name='Its Active')
 
     datetime_create = models.DateTimeField(default=timezone.now(), verbose_name='Time created')
+
+    def __str__(self):
+        return self.message

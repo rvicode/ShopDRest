@@ -13,3 +13,10 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+
+    def __str__(self):
+        username = self.username
+        if username:
+            return username
+        else:
+            return self.email
