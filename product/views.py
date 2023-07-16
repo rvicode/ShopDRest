@@ -3,8 +3,10 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 
-from .models import Product, Category
-from .serializers import ProductListSerializer, ProductDetailSerializer, CategoryListSerializer, CategoryDetailSerializer
+from .models import Product, Category, Comment
+from .serializers import ProductListSerializer, ProductDetailSerializer, CategoryListSerializer,\
+    CategoryDetailSerializer,\
+    CommentListSerializer
 
 
 @api_view(['GET'])

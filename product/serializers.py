@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from .models import Product, Category
+from .models import Product, Category, Comment
+
+
+class CommentListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('user', 'message', 'parent', 'active')
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -11,6 +17,7 @@ class ProductListSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
+    comments = CommentListSerializer(read_only=True, many=True)
     category = serializers.SlugRelatedField(
         many=True,
         read_only=True,
@@ -18,7 +25,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('category', 'title', 'description', 'active', 'datetime_created')
+        fields = ('category', 'title', 'description', 'active', 'datetime_created', 'comments')
         read_only = True
 
 
