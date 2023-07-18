@@ -17,7 +17,10 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='category', verbose_name='Category', null=True, blank=True)
     title = models.CharField(max_length=30, verbose_name='Title')
+    short_description = models.TextField(verbose_name='Short Description', blank=True, null=True)
+    image = models.ImageField(verbose_name='Image', upload_to='Image/Products', null=True)
     description = models.TextField(verbose_name='Description')
+    price = models.IntegerField(verbose_name='Price', null=True)
     active = models.BooleanField(verbose_name="I's Active")
 
     datetime_created = models.DateTimeField(default=timezone.now(), verbose_name='Date Time Created')
