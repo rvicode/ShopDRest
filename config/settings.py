@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # MY APPs
     "accounts.apps.AccountsConfig",
     "product.apps.ProductConfig",
+    "cart.apps.CartConfig",
 
     # Installed packages
     'rest_framework_simplejwt',
