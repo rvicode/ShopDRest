@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth import get_user_model
 
 
@@ -7,7 +6,7 @@ class Category(models.Model):
     title = models.CharField(max_length=100)
     active = models.BooleanField(verbose_name="I's Active")
 
-    datetime_created = models.DateTimeField(default=timezone.now(), verbose_name='Date Time Created')
+    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Time Created')
     datetime_modified = models.DateTimeField(auto_now=True, verbose_name='Date Time Updated')
 
     def __str__(self):
@@ -23,7 +22,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Price', null=True)
     active = models.BooleanField(verbose_name="I's Active")
 
-    datetime_created = models.DateTimeField(default=timezone.now(), verbose_name='Date Time Created')
+    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Time Created')
     datetime_modified = models.DateTimeField(auto_now=True, verbose_name='Date Time Updated')
 
     def __str__(self):
@@ -39,7 +38,7 @@ class Comment(models.Model):
                                verbose_name='Reply comment')
     active = models.BooleanField(default=True, verbose_name='Its Active')
 
-    datetime_create = models.DateTimeField(default=timezone.now(), verbose_name='Time created')
+    datetime_created_comment = models.DateTimeField(auto_now_add=True, verbose_name='Time created', editable=True)
 
     def __str__(self):
         return self.message

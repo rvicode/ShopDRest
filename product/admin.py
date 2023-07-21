@@ -5,7 +5,7 @@ from .models import Product, Category, Comment
 
 class CommentsInline(admin.TabularInline):
     model = Comment
-    fields = ['user', 'message', 'active', 'parent', 'datetime_create']
+    fields = ['user', 'message', 'active', 'parent']
     extra = 1
 
 
@@ -24,4 +24,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product', 'message', 'parent', 'active', 'datetime_create')
+    list_display = ('user', 'product', 'message', 'parent', 'active', 'datetime_created_comment')
