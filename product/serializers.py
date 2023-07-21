@@ -6,7 +6,7 @@ from .models import Product, Category, Comment
 class CommentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('user', 'message', 'parent', 'active')
+        fields = ('id', 'user', 'message', 'parent', 'active', 'datetime_created_comment')
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('category', 'title', 'description', 'active', 'datetime_created', 'comments')
+        fields = ('category', 'id', 'title', 'description', 'active','price', 'datetime_created', 'comments')
         read_only = True
 
 
