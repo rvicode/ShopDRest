@@ -33,7 +33,7 @@ class Cart:
         else:
             self.cart[product_id]['quantity'] += quantity
 
-        messages.success(self.request, _('Your product added to cart'))
+        messages.success(self.request, 'Your product added to cart')
 
         self.save()
 
@@ -45,7 +45,7 @@ class Cart:
 
         if product_id in self.cart:
             del self.cart[product_id]
-            messages.success(self.request, _('Your product removed form cart'))
+            messages.success(self.request, 'Your product removed form cart')
             self.save()
 
     def save(self):
