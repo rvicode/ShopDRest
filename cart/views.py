@@ -61,3 +61,12 @@ def clear_all_cart_view(request):
     cart = Cart(request)
     cart.clear()
     return Response({'Cart': 'Cart is clear'}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def remove_to_cart_view(request, product_id):
+    cart = Cart(request)
+
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return Response({'Cart': f'Cart {product_id} removed'})
