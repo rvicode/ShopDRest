@@ -16,6 +16,7 @@ class CartItemSerializer(serializers.Serializer):
         return obj['product']['price'] * obj['quantity']
 
 class CartProductSerializer(serializers.Serializer):
+    quantity = serializers.IntegerField()
     total_price = serializers.SerializerMethodField()
     product_obj = ProductSerializer(source='product', read_only=True)
 
