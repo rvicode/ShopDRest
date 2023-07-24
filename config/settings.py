@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "orders.apps.OrdersConfig",
 
     # Installed packages
+    'jalali_date',
     'rest_framework',
     'drf_spectacular',
     'rest_framework_swagger',
