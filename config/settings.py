@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework_swagger',
     'rest_framework_simplejwt',
+    'phonenumber_field',
 ]
 
 SWAGGER_SETTINGS = {
