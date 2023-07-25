@@ -65,7 +65,7 @@ class Cart:
             cart[str(product.id)]['product'] = ProductSerializer(product).data
 
         for item in cart.values():
-            item['total_price'] = item['product']['price'] * item['quantity']
+            item['total_price'] = item.get('product', {}).get('price', 0) * item['quantity']
             yield item
 
     def __len__(self):
