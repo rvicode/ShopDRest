@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "product.apps.ProductConfig",
     "cart.apps.CartConfig",
-    "orders.apps.OrdersConfig",
 
     # Installed packages
     'jalali_date',
